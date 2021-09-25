@@ -4,7 +4,10 @@ import styled from "@emotion/styled";
 
 import { Header } from "form/shared/header";
 import * as Colors from "design-system/colors";
-import { selectYearsList, updateFilteredByYear } from "store/slices/form-slice";
+import {
+  selectManufacturingYearList,
+  updateCarsByYear,
+} from "store/slices/form-slice";
 import { StepsContext } from "helpers/steps-context";
 
 const StyledFormElementWrapper = styled.div({
@@ -33,7 +36,7 @@ const StyledListItem = styled.p({
 });
 
 const ManufacturingYear = () => {
-  const yearsList = useSelector(selectYearsList);
+  const yearsList = useSelector(selectManufacturingYearList);
   const { setStep } = useContext(StepsContext);
   const dispatch = useDispatch();
 
@@ -45,7 +48,7 @@ const ManufacturingYear = () => {
           <StyledListItem
             key={year}
             onClick={() => {
-              dispatch(updateFilteredByYear(year));
+              dispatch(updateCarsByYear(year));
               setStep(1);
             }}
           >
@@ -57,4 +60,4 @@ const ManufacturingYear = () => {
   );
 };
 
-export { ManufacturingYear };
+export { ManufacturingYear, StyledFormElementWrapper };

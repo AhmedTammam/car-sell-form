@@ -11,12 +11,12 @@ interface CarProps {
 
 interface FormState {
   headerInfo: string[];
-  filteredBrands: CarProps[];
+  cars: CarProps[];
 }
 
 const initialState: FormState = {
   headerInfo: [],
-  filteredBrands: [],
+  cars: [],
 };
 
 export const formSlice = createSlice({
@@ -24,13 +24,15 @@ export const formSlice = createSlice({
   initialState,
   reducers: {
     setStockData: (state) => {
-      state.filteredBrands = stockData;
+      state.cars = stockData;
     },
-    updateFilteredByYear: (state, action: PayloadAction<number>) => {
+    updateCarsByYear: (state, action: PayloadAction<number>) => {
       state.headerInfo.push(action.payload.toString());
-      state.filteredBrands = state.filteredBrands.filter(
-        (item) => item.year === action.payload
-      );
+      state.cars = state.cars.filter((item) => item.year === action.payload);
+    },
+    updateCarsByBrand: (state, action: PayloadAction<string>) => {
+      state.headerInfo.push(action.payload.toString());
+      state.cars = state.cars.filter((item) => item.make === action.payload);
     },
   },
 });
@@ -38,9 +40,12 @@ export const formSlice = createSlice({
 const selectHeaderInfo = (state: RootState) =>
   state.form.headerInfo.join(" - ");
 
-const selectYearsList = () => {
-  const modelYears = stockData.map((item: { year: number }) => item.year);
-  const years = modelYears
+const selectManufacturingYearList = (state: RootState) => {
+  const manufacturingYear = state.form.cars.map(
+    (item: { year: number }) => item.year
+  );
+
+  const years = manufacturingYear
     .filter(function (item, pos, self) {
       return self.indexOf(item) === pos;
     })
@@ -49,8 +54,20 @@ const selectYearsList = () => {
   return years;
 };
 
-export const { setStockData, updateFilteredByYear } = formSlice.actions;
+const selectBrandsList = (state: RootState) => {
+  const brandsList = state.form.cars.map((item) => item.make);
+  const filteredBrandsList = brandsList.filter(
+    (item: string, pos: number, self: string[]) => {
+      return self.indexOf(item) === pos;
+    }
+  );
 
-export { selectHeaderInfo, selectYearsList };
+  return filteredBrandsList;
+};
+
+export const { setStockData, updateCarsByYear, updateCarsByBrand } =
+  formSlice.actions;
+
+export { selectHeaderInfo, selectManufacturingYearList, selectBrandsList };
 
 export default formSlice.reducer;
