@@ -60,4 +60,4 @@ const ManufacturingYear = () => {
   );
 };
 
-export { ManufacturingYear, StyledFormElementWrapper };
+export { ManufacturingYear, StyledFormElementWrapper, StyledListItem };

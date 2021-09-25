@@ -34,6 +34,10 @@ export const formSlice = createSlice({
       state.headerInfo.push(action.payload.toString());
       state.cars = state.cars.filter((item) => item.make === action.payload);
     },
+    updateCarsByModel: (state, action: PayloadAction<string>) => {
+      state.headerInfo.push(action.payload.toString());
+      state.cars = state.cars.filter((item) => item.model === action.payload);
+    },
   },
 });
 
@@ -65,9 +69,29 @@ const selectBrandsList = (state: RootState) => {
   return filteredBrandsList;
 };
 
-export const { setStockData, updateCarsByYear, updateCarsByBrand } =
-  formSlice.actions;
+const selectCarModelsList = (state: RootState) => {
+  const modelsList = state.form.cars.map((item) => item.model);
+  const filteredModelsList = modelsList.filter(
+    (item: string, pos: number, self: string[]) => {
+      return self.indexOf(item) === pos;
+    }
+  );
 
-export { selectHeaderInfo, selectManufacturingYearList, selectBrandsList };
+  return filteredModelsList;
+};
+
+export const {
+  setStockData,
+  updateCarsByYear,
+  updateCarsByBrand,
+  updateCarsByModel,
+} = formSlice.actions;
+
+export {
+  selectHeaderInfo,
+  selectManufacturingYearList,
+  selectBrandsList,
+  selectCarModelsList,
+};
 
 export default formSlice.reducer;
