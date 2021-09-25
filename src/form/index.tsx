@@ -7,6 +7,7 @@ import { BrandsList } from "./form-steps/brands-list";
 import { setStockData } from "store/slices/form-slice";
 import { BrandModelsList } from "./form-steps/brand-models-list";
 import { ModelVersionsList } from "./form-steps/model-versions-list";
+import { UserInfo } from "./form-steps/user-info";
 
 const Form = () => {
   const { step } = useContext(StepsContext);
@@ -25,6 +26,8 @@ const Form = () => {
         return <BrandModelsList />;
       case 3:
         return <ModelVersionsList />;
+      case 4:
+        return <UserInfo />;
       default:
         return null;
     }

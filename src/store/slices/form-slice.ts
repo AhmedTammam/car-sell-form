@@ -9,14 +9,26 @@ interface CarProps {
   versions: string[];
 }
 
+interface UserInfoProps {
+  firstName: string;
+  email: string;
+  phone: string;
+}
+
 interface FormState {
   headerInfo: string[];
   cars: CarProps[];
+  userInfo: UserInfoProps;
 }
 
 const initialState: FormState = {
   headerInfo: [],
   cars: [],
+  userInfo: {
+    firstName: "",
+    email: "",
+    phone: "",
+  },
 };
 
 export const formSlice = createSlice({
@@ -51,6 +63,9 @@ export const formSlice = createSlice({
             (version: string) => version === action.payload
           ))
       );
+    },
+    updateUserInfo: (state, action: PayloadAction<UserInfoProps>) => {
+      state.userInfo = action.payload;
     },
   },
 });
@@ -100,12 +115,25 @@ const selectModelVersionsList = (state: RootState) => {
   return versionsList;
 };
 
+const selectFullUserInfo = (state: RootState) => {
+  const userInfo = state.form.userInfo;
+  const carInfo = state.form.cars[0];
+
+  const fullUserInfo = {
+    ...userInfo,
+    ...carInfo,
+  };
+
+  return fullUserInfo;
+};
+
 export const {
   setStockData,
   updateCarsByYear,
   updateCarsByBrand,
   updateCarsByModel,
   updateCarsModelByVersion,
+  updateUserInfo,
 } = formSlice.actions;
 
 export {
@@ -114,6 +142,7 @@ export {
   selectBrandsList,
   selectCarModelsList,
   selectModelVersionsList,
+  selectFullUserInfo,
 };
 
 export default formSlice.reducer;
