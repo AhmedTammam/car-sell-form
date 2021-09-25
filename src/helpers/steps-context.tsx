@@ -6,12 +6,12 @@ import {
   useState,
 } from "react";
 
-export const StepsContext = createContext<{
+const StepsContext = createContext<{
   step: Number;
   setStep: Dispatch<SetStateAction<number>>;
 }>({ step: 0, setStep: (step) => step });
 
-export const StepsContextProvider = ({ children }: { children: ReactNode }) => {
+const StepsContextProvider = ({ children }: { children: ReactNode }) => {
   const [step, setStep] = useState(0);
 
   return (
@@ -20,3 +20,5 @@ export const StepsContextProvider = ({ children }: { children: ReactNode }) => {
     </StepsContext.Provider>
   );
 };
+
+export { StepsContext, StepsContextProvider };
