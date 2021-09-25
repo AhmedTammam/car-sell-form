@@ -1,20 +1,20 @@
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Header } from "form/shared/header";
+import { Header } from "components/header";
 import {
   StyledFormElementWrapper,
   StyledListItem,
-} from "form/form-steps/manufacturing-year";
-import FilteredInput from "form/shared/filtered-input";
+} from "car-form/steps/manufacturing-year";
+import FilteredInput from "components/filtered-input";
 import {
   selectHeaderInfo,
   selectCarModelsList,
   updateCarsByModel,
-} from "store/slices/form-slice";
-import { StepsContext } from "helpers/steps-context";
+} from "car-form/state/form-slice";
+import { StepsContext } from "car-form/state/steps-context";
 
-const BrandModelsList = () => {
+export const BrandModelsList = () => {
   const { setStep } = useContext(StepsContext);
   const info = useSelector(selectHeaderInfo);
   const models = useSelector(selectCarModelsList);
@@ -47,5 +47,3 @@ const BrandModelsList = () => {
     </div>
   );
 };
-
-export { BrandModelsList };

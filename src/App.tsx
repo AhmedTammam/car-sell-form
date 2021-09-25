@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
-import Form from "form";
-import { StepsContextProvider } from "helpers/steps-context";
-import * as Colors from "design-system/colors";
+import Form from "car-form";
+import { StepsContextProvider } from "car-form/state/steps-context";
+import * as Colors from "style/colors";
 
 const StyledContainer = styled.div({
   backgroundColor: Colors.lightGrey,

@@ -1,5 +1,5 @@
 import React, { ReactNode, ChangeEvent, useState } from "react";
-import { InputField } from "design-system/components/input-field";
+import { InputField } from "components/input-field";
 
 const FilteredInput = ({
   placeholder,

@@ -1,17 +1,29 @@
 import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "@emotion/styled";
 
-import { Header } from "form/shared/header";
-import FilteredInput from "form/shared/filtered-input";
+import { Header } from "components/header";
+import FilteredInput from "components/filtered-input";
 import {
   selectHeaderInfo,
   selectModelVersionsList,
   updateCarsModelByVersion,
-} from "store/slices/form-slice";
-import { StepsContext } from "helpers/steps-context";
-import * as Colors from "design-system/colors";
+} from "car-form/state/form-slice";
+import { StepsContext } from "car-form/state/steps-context";
+import * as Colors from "style/colors";
 
-const ModelVersionsList = () => {
+const StyledRadioBtnWrapper = styled.div({
+  display: "flex",
+  padding: 10,
+});
+
+const StyledRadioBtnTitle = styled.p({
+  fontSize: 18,
+  fontWeight: "bold",
+  marginBottom: 6,
+});
+
+export const ModelVersionsList = () => {
   const modelVersionsList = useSelector(selectModelVersionsList);
   const info = useSelector(selectHeaderInfo);
   const { setStep } = useContext(StepsContext);
@@ -24,15 +36,7 @@ const ModelVersionsList = () => {
     );
     return (
       <>
-        <p
-          style={{
-            fontSize: 18,
-            fontWeight: "bold",
-            marginBottom: 6,
-          }}
-        >
-          {title}
-        </p>
+        <StyledRadioBtnTitle>{title}</StyledRadioBtnTitle>
         <p style={{ color: Colors.darkGrey }}>{version}</p>
       </>
     );
@@ -46,9 +50,8 @@ const ModelVersionsList = () => {
         dataToFiltered={modelVersionsList}
         renderFilteredData={(filteredData) => {
           return filteredData.map((version, index) => (
-            <div
+            <StyledRadioBtnWrapper
               key={index}
-              style={{ display: "flex", padding: 10 }}
               onClick={() => {
                 dispatch(updateCarsModelByVersion(version));
                 setStep(4);
@@ -63,12 +66,10 @@ const ModelVersionsList = () => {
               <label htmlFor={`${index}`} style={{ marginLeft: 4 }}>
                 {renderVersionPoints(version)}
               </label>
-            </div>
+            </StyledRadioBtnWrapper>
           ));
         }}
       />
     </div>
   );
 };
-
-export { ModelVersionsList };

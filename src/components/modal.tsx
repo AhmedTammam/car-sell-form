@@ -1,12 +1,12 @@
 import React, { Dispatch, useContext, SetStateAction } from "react";
 import styled from "@emotion/styled";
 
-import { StyledSubmitBtn } from "form/form-steps/user-info";
-import { StepsContext } from "helpers/steps-context";
+import { StyledSubmitBtn } from "car-form/steps/user-info";
+import { StepsContext } from "car-form/state/steps-context";
 
-import * as Colors from "design-system/colors";
+import * as Colors from "style/colors";
 import { useSelector } from "react-redux";
-import { selectFullUserInfo } from "store/slices/form-slice";
+import { selectFullUserInfo } from "car-form/state/form-slice";
 
 const StyledModalWrapper = styled.div({
   position: "absolute",

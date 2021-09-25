@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "..";
-import { stockData } from "store/catalog_info";
+import { RootState } from "store";
+import { stockData } from "car-form/state/catalog_info";
 
 interface CarProps {
   year: number;

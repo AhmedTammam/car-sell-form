@@ -1,12 +1,12 @@
 import { useContext } from "react";
 
-import { StepsContext } from "helpers/steps-context";
-import { ManufacturingYear } from "form/form-steps/manufacturing-year";
-import { BrandsList } from "form/form-steps/brands-list";
-import { BrandModelsList } from "form/form-steps/brand-models-list";
-import { ModelVersionsList } from "form/form-steps/model-versions-list";
-import { UserInfo } from "form/form-steps/user-info";
-import { ThanksPage } from "form/form-steps/thanks-page";
+import { StepsContext } from "car-form/state/steps-context";
+import { ManufacturingYear } from "car-form/steps/manufacturing-year";
+import { BrandsList } from "car-form/steps/brands-list";
+import { BrandModelsList } from "car-form/steps/brand-models-list";
+import { ModelVersionsList } from "car-form/steps/model-versions-list";
+import { UserInfo } from "car-form/steps/user-info";
+import { ThanksPage } from "car-form/steps/thanks-page";
 
 const Form = () => {
   const { step } = useContext(StepsContext);

@@ -1,7 +1,8 @@
-import styled from "@emotion/styled";
 import React, { ChangeEvent } from "react";
-import SearchIcon from "design-system/components/input-field/search-icon.png";
-import * as Colors from "design-system/colors";
+import { FaSearch } from "react-icons/fa";
+import styled from "@emotion/styled";
+
+import * as Colors from "style/colors";
 
 const StyledSearchWrapper = styled.div({
   display: "flex",
@@ -40,7 +41,7 @@ const InputField = ({
     <StyledSearchWrapper>
       <StyleInput type="text" onChange={onChange} placeholder={placeholder} />
       <StyledIcon type="button">
-        <img src={SearchIcon} alt="search-icon" style={{ width: 15 }} />
+        <FaSearch />
       </StyledIcon>
     </StyledSearchWrapper>
   );

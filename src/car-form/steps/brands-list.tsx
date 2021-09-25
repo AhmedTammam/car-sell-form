@@ -5,12 +5,12 @@ import {
   selectBrandsList,
   selectHeaderInfo,
   updateCarsByBrand,
-} from "store/slices/form-slice";
-import { Header } from "form/shared/header";
-import { StyledFormElementWrapper } from "form/form-steps/manufacturing-year";
-import FilteredInput from "form/shared/filtered-input";
-import * as Colors from "design-system/colors";
-import { StepsContext } from "helpers/steps-context";
+} from "car-form/state/form-slice";
+import { Header } from "components/header";
+import { StyledFormElementWrapper } from "car-form/steps/manufacturing-year";
+import FilteredInput from "components/filtered-input";
+import * as Colors from "style/colors";
+import { StepsContext } from "car-form/state/steps-context";
 
 const StyledCarItem = styled.div({
   borderBottom: `1px solid ${Colors.darkGrey}`,
@@ -22,7 +22,7 @@ const StyledCarItem = styled.div({
   },
 });
 
-const BrandsList = () => {
+export const BrandsList = () => {
   const { setStep } = useContext(StepsContext);
   const brandsList = useSelector(selectBrandsList);
   const info = useSelector(selectHeaderInfo);
@@ -60,5 +60,3 @@ const BrandsList = () => {
     </div>
   );
 };
-
-export { BrandsList };

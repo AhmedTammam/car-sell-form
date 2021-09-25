@@ -2,14 +2,14 @@ import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 
-import { Header } from "form/shared/header";
-import * as Colors from "design-system/colors";
+import { Header } from "components/header";
+import * as Colors from "style/colors";
 import {
   selectManufacturingYearList,
   setStockData,
   updateCarsByYear,
-} from "store/slices/form-slice";
-import { StepsContext } from "helpers/steps-context";
+} from "car-form/state/form-slice";
+import { StepsContext } from "car-form/state/steps-context";
 
 const StyledFormElementWrapper = styled.div({
   padding: 10,

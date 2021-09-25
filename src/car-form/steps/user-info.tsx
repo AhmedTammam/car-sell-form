@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { Header } from "form/shared/header";
-import { selectHeaderInfo, updateUserInfo } from "store/slices/form-slice";
-import * as Colors from "design-system/colors";
-import { SuccessModal } from "design-system/components/modal";
+import { Header } from "components/header";
+import { selectHeaderInfo, updateUserInfo } from "car-form/state/form-slice";
+import * as Colors from "style/colors";
+import { SuccessModal } from "components/modal";
 
 const StyledInputWrapper = styled.div({
   display: "flex",
@@ -19,7 +19,6 @@ const StyledInputWrapper = styled.div({
   border: `1px solid ${Colors.darkGrey}`,
   borderRadius: 4,
   position: "relative",
-  color: Colors.darkGrey,
   ">label": {
     fontSize: 10,
   },
@@ -120,7 +119,7 @@ const UserInfo = () => {
         </StyledInputWrapper>
         <StyledInputWrapper>
           <label style={{ marginBottom: 4 }}>Phone Number</label>
-          <StyleInput {...register("phone")} placeholder="Phone Number" />
+          <StyleInput {...register("phone")} placeholder="123-123-1234" />
           <span>{errors.phone?.message}</span>
         </StyledInputWrapper>
         <StyledSubmitBtn type="submit">Submit</StyledSubmitBtn>
