@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -5,12 +6,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Header } from "form/shared/header";
-import {
-  selectFullUserInfo,
-  selectHeaderInfo,
-  updateUserInfo,
-} from "store/slices/form-slice";
+import { selectHeaderInfo, updateUserInfo } from "store/slices/form-slice";
 import * as Colors from "design-system/colors";
+import { SuccessModal } from "design-system/components/modal";
 
 const StyledInputWrapper = styled.div({
   display: "flex",
@@ -73,8 +71,8 @@ const schema = yup.object({
 });
 
 const UserInfo = () => {
+  const [showModal, setShowModal] = useState(false);
   const info = useSelector(selectHeaderInfo);
-  const userFullInfo = useSelector(selectFullUserInfo);
   const dispatch = useDispatch();
 
   const {
@@ -86,7 +84,7 @@ const UserInfo = () => {
   });
   const onSubmit: SubmitHandler<IFormInputs> = (data: IFormInputs) => {
     dispatch(updateUserInfo(data));
-    localStorage.setItem("info", JSON.stringify(userFullInfo));
+    setShowModal(true);
   };
 
   return (
@@ -127,6 +125,7 @@ const UserInfo = () => {
         </StyledInputWrapper>
         <StyledSubmitBtn type="submit">Submit</StyledSubmitBtn>
       </form>
+      {showModal && <SuccessModal setShowModal={setShowModal} />}
     </div>
   );
 };

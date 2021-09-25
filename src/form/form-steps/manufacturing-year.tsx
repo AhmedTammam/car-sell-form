@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 
@@ -6,6 +6,7 @@ import { Header } from "form/shared/header";
 import * as Colors from "design-system/colors";
 import {
   selectManufacturingYearList,
+  setStockData,
   updateCarsByYear,
 } from "store/slices/form-slice";
 import { StepsContext } from "helpers/steps-context";
@@ -39,6 +40,10 @@ const ManufacturingYear = () => {
   const yearsList = useSelector(selectManufacturingYearList);
   const { setStep } = useContext(StepsContext);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setStockData());
+  }, [dispatch]);
 
   return (
     <>

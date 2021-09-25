@@ -1,20 +1,15 @@
-import { useContext, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useContext } from "react";
 
 import { StepsContext } from "helpers/steps-context";
-import { ManufacturingYear } from "./form-steps/manufacturing-year";
-import { BrandsList } from "./form-steps/brands-list";
-import { setStockData } from "store/slices/form-slice";
-import { BrandModelsList } from "./form-steps/brand-models-list";
-import { ModelVersionsList } from "./form-steps/model-versions-list";
-import { UserInfo } from "./form-steps/user-info";
+import { ManufacturingYear } from "form/form-steps/manufacturing-year";
+import { BrandsList } from "form/form-steps/brands-list";
+import { BrandModelsList } from "form/form-steps/brand-models-list";
+import { ModelVersionsList } from "form/form-steps/model-versions-list";
+import { UserInfo } from "form/form-steps/user-info";
+import { ThanksPage } from "form/form-steps/thanks-page";
 
 const Form = () => {
   const { step } = useContext(StepsContext);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setStockData());
-  }, [dispatch]);
 
   const renderChildren = (step: Number) => {
     switch (step) {
@@ -28,6 +23,8 @@ const Form = () => {
         return <ModelVersionsList />;
       case 4:
         return <UserInfo />;
+      case 5:
+        return <ThanksPage />;
       default:
         return null;
     }
