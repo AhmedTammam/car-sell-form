@@ -22,8 +22,9 @@ const BrandModelsList = () => {
 
   return (
     <div>
-      <Header title="body style" subTitle={info} />
+      <Header title="Select Model" subTitle={info} />
       <FilteredInput
+        placeholder="Search for model"
         dataToFiltered={models}
         renderFilteredData={(filteredData) => {
           return (

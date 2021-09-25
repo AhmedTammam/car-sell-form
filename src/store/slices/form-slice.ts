@@ -38,6 +38,20 @@ export const formSlice = createSlice({
       state.headerInfo.push(action.payload.toString());
       state.cars = state.cars.filter((item) => item.model === action.payload);
     },
+    updateCarsModelByVersion: (
+      state,
+      action: PayloadAction<string | string>
+    ) => {
+      const versionsList = action.payload.split(",");
+      const title = versionsList[0].substr(versionsList[0].indexOf(".") + 2);
+      state.headerInfo.push(title);
+      state.cars = state.cars.filter(
+        (item) =>
+          (item.versions = item.versions.filter(
+            (version: string) => version === action.payload
+          ))
+      );
+    },
   },
 });
 
@@ -80,11 +94,18 @@ const selectCarModelsList = (state: RootState) => {
   return filteredModelsList;
 };
 
+const selectModelVersionsList = (state: RootState) => {
+  const versionsList = state.form.cars.map((item) => item.versions)[0];
+
+  return versionsList;
+};
+
 export const {
   setStockData,
   updateCarsByYear,
   updateCarsByBrand,
   updateCarsByModel,
+  updateCarsModelByVersion,
 } = formSlice.actions;
 
 export {
@@ -92,6 +113,7 @@ export {
   selectManufacturingYearList,
   selectBrandsList,
   selectCarModelsList,
+  selectModelVersionsList,
 };
 
 export default formSlice.reducer;

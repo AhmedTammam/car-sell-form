@@ -42,7 +42,7 @@ const ManufacturingYear = () => {
 
   return (
     <>
-      <Header title="Select a Year" />
+      <Header title="Select Year" />
       <StyledFormElementWrapper>
         {yearsList.map((year: number) => (
           <StyledListItem

@@ -31,14 +31,15 @@ const BrandsList = () => {
 
   return (
     <div>
-      <Header title="select Mark" subTitle={info} />
+      <Header title="Select Brand" subTitle={info} />
       <FilteredInput
+        placeholder="Search for brand"
         dataToFiltered={brandsList}
-        renderFilteredData={(filteredData) => {
+        renderFilteredData={(brands) => {
           return (
             <StyledFormElementWrapper style={{ flexDirection: "column" }}>
-              {filteredData.length ? (
-                filteredData.map((text: string) => (
+              {brands.length ? (
+                brands.map((text: string) => (
                   <StyledCarItem
                     key={text}
                     onClick={() => {
