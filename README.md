@@ -1,7 +1,4 @@
 <p align="center">
-  <a href="https://www.vhv.rs/dpng/d/577-5771533_group-of-cars-png-transparent-png.png">
-    <img src="https://w7.pngwing.com/pngs/218/55/png-transparent-car-rental-computer-icons-sell-compact-car-blue-logo.png" alt="Logo" width="150" height="100">
-  </a>
 
   <h2 align="center">Car Sell Muti-step Form</h2>
   <p align="center">
